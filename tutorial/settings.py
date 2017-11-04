@@ -18,7 +18,7 @@ NEWSPIDER_MODULE = 'tutorial.spiders'
 # USER_AGENT = 'tutorial (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Mysql数据库的配置信息
 # MYSQL_HOST = '127.0.0.1'
@@ -40,7 +40,7 @@ ROBOTSTXT_OBEY = True
 # CONCURRENT_REQUESTS_PER_IP = 16
 
 # Disable cookies (enabled by default)
-# COOKIES_ENABLED = False
+COOKIES_ENABLED = True
 
 # Disable Telnet Console (enabled by default)
 # TELNETCONSOLE_ENABLED = False
@@ -59,21 +59,41 @@ ROBOTSTXT_OBEY = True
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
-# DOWNLOADER_MIDDLEWARES = {
-#    'tutorial.middlewares.MyCustomDownloaderMiddleware': 543,
-# }
+DOWNLOADER_MIDDLEWARES = {
+    # 'tutorial.middlewares.MyCustomDownloaderMiddleware': 543,
+    'scrapy.contrib.downloadermiddleware.cookies.CookiesMiddleware': 543
+}
 
 # Enable or disable extensions
 # See http://scrapy.readthedocs.org/en/latest/topics/extensions.html
-# EXTENSIONS = {
-#    'scrapy.extensions.telnet.TelnetConsole': None,
-# }
+EXTENSIONS = {
+    # 'scrapy.extensions.telnet.TelnetConsole': None,
+    # 'scrapy.extensions.statsmailer.StatsMailer': None,
+}
+
+# STATSMAILER_RCPTS = ['mapuwen@outlook.com']
+#
+# MAIL_FROM = 'mapuwen@163.com'
+# MAIL_HOST = 'smtp.163.com'
+# MAIL_PORT = 25
+# MAIL_USER = 'mapuwen@163.com'
+# MAIL_PASS = '274226ma.'
+#
+# CLOSESPIDER_TIMEOUT = 10
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
     'tutorial.pipelines.TutorialPipeline': 300,
 }
+
+COOKIES_DEBUG = True
+REDIRECT_ENABLED = False
+HTTPERROR_ALLOWED_CODES = [
+    301,
+    302,
+    400,
+]
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
